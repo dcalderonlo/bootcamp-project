@@ -1,8 +1,14 @@
-# React + Vite
+# Proyecto Final - Bootcamp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Pasos para ejecutar la app:
 
-Currently, two official plugins are available:
+Comando usado para realizar el container y el volumen de mongodb en docker:
+>docker run -d -p 27017:27017 --name bootcamp-final_container -v bootcamp-final_data:/data/db mongo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Llenamos la base de datos mongo con los datos del archivo en data/users.json con el siguiente comando:
+>docker cp src/data/users.json bootcamp-final_container:/users.json
+
+>docker exec -it bootcamp-final_container mongoimport --db users --collection users --file /users.json --jsonArray
+
+Para correr la app con node 20.10.xx se puede utilizar el comando:
+>node --watch src/index.js
